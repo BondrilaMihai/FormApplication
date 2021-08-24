@@ -10,15 +10,11 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface SeatsMapper {
 
-    List<Seats> toEntities(List<SeatsDto> doctorDto);
+    List<Seats> toEntities(List<SeatsDto> seatsDtoList);
 
-    List<SeatsDto> toDtos(List<Seats> doctor);
+    List<SeatsDto> toDtos(List<Seats> seatsList);
 
-    @Mapping(source = "status", target = "seatStatus")
-    @Mapping(source = "type", target = "seatType")
-    Seats toEntity(SeatsDto doctorDto);
+    Seats toEntity(SeatsDto seatsDto);
 
-    @Mapping(source = "seatStatus", target = "status")
-    @Mapping(source = "seatType", target = "type")
-    SeatsDto toDto(Seats doctor);
+    SeatsDto toDto(Seats seats);
 }

@@ -1,38 +1,32 @@
 package doctor.form.core.model;
 
-import doctor.form.core.repository.entity.Reviews;
-
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 
-public class UserDto {
+public class CustomerDto {
 
     private String id;
     private String lastName;
     private String firstName;
     private String address;
     private String email;
+    private String password;
     private String phoneNumber;
-    private Integer points;
-    private List<ReviewsDto> reviews;
+    private String authority;
+    private String token;
 
-    public UserDto() {
+    public CustomerDto() {
     }
 
-    public UserDto(String id, String lastName, String firstName, String address, String email, String phoneNumber, Integer points, List<ReviewsDto> reviews) {
+    public CustomerDto(String id, String lastName, String firstName, String address, String email, String password, String phoneNumber, String authority, String token) {
         this.id = id;
         this.lastName = lastName;
         this.firstName = firstName;
         this.address = address;
         this.email = email;
+        this.password = password;
         this.phoneNumber = phoneNumber;
-        this.points = points;
-        this.reviews = reviews;
+        this.authority = authority;
+        this.token = token;
     }
 
     public String getId() {
@@ -75,6 +69,14 @@ public class UserDto {
         this.email = email;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -83,19 +85,19 @@ public class UserDto {
         this.phoneNumber = phoneNumber;
     }
 
-    public Integer getPoints() {
-        return points;
+    public String getAuthority() {
+        return authority;
     }
 
-    public void setPoints(Integer points) {
-        this.points = points;
+    public void setAuthority(String authority) {
+        this.authority = authority;
     }
 
-    public List<ReviewsDto> getReviews() {
-        return reviews;
+    public String getToken() {
+        return token;
     }
 
-    public void setReviews(List<ReviewsDto> reviews) {
-        this.reviews = reviews;
+    public void setToken(String token) {
+        this.token = token;
     }
 }

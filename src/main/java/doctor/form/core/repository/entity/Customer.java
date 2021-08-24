@@ -1,21 +1,25 @@
 package doctor.form.core.repository.entity;
 
+import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GenerationTime;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Set;
 import java.util.UUID;
 
 @Entity
-@Table(name = "USER_DETAILS")
-public class User implements Serializable {
+@Table(name = "CUSTOMER")
+public class Customer implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-//    @GeneratedValue(generator = "uuid")
-//    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(
+            name = "UUID",
+            strategy = "org.hibernate.id.UUIDGenerator")
     @Column(name = "ID")
+    @Generated(GenerationTime.ALWAYS)
     private String id;
 
     @Column(name = "LAST_NAME")
@@ -24,33 +28,29 @@ public class User implements Serializable {
     @Column(name = "FIRST_NAME")
     private String firstName;
 
-    @Column(name = "ADDRESS")
-    private String address;
-
     @Column(name = "EMAIL")
     private String email;
+
+    @Column(name = "PASSWORD")
+    private String password;
 
     @Column(name = "PHONE_NUMBER")
     private String phoneNumber;
 
-    @Column(name = "POINTS")
-    private Integer points;
+    @Column(name = "AUTHORITY")
+    private String authority;
 
-    @OneToMany(mappedBy="user")
-    private Set<Reviews> reviews;
-
-    public User() {
+    public Customer() {
     }
 
-    public User(String id, String lastName, String firstName, String address, String email, String phoneNumber, Integer points, Set<Reviews> reviews) {
+    public Customer(String id, String lastName, String firstName, String email, String password, String phoneNumber, String authority) {
         this.id = id;
         this.lastName = lastName;
         this.firstName = firstName;
-        this.address = address;
         this.email = email;
+        this.password = password;
         this.phoneNumber = phoneNumber;
-        this.points = points;
-        this.reviews = reviews;
+        this.authority = authority;
     }
 
     public String getId() {
@@ -77,20 +77,20 @@ public class User implements Serializable {
         this.firstName = firstName;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public String getEmail() {
         return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getPhoneNumber() {
@@ -101,19 +101,11 @@ public class User implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
-    public Integer getPoints() {
-        return points;
+    public String getAuthority() {
+        return authority;
     }
 
-    public void setPoints(Integer points) {
-        this.points = points;
-    }
-
-    public Set<Reviews> getReviews() {
-        return reviews;
-    }
-
-    public void setReviews(Set<Reviews> reviews) {
-        this.reviews = reviews;
+    public void setAuthority(String authority) {
+        this.authority = authority;
     }
 }

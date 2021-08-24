@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService {
     UserMapper userMapper;
 
     @Override
-    public UserDto getUserInformation(UUID userId) {
+    public UserDto getUserInformation(String userId) {
         Optional<User> user = userRepository.findById(userId);
         return user.map(value -> userMapper.toDto(value)).orElse(null);
     }

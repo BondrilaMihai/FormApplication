@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.UUID;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -18,7 +17,7 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/{userId}")
-    public ResponseEntity<UserDto> getPatientHistory(@PathVariable UUID userId) {
+    public ResponseEntity<UserDto> getUserInformation(@PathVariable String userId) {
         UserDto userResponse = userService.getUserInformation(userId);
         return new ResponseEntity<>(userResponse, HttpStatus.OK);
     }

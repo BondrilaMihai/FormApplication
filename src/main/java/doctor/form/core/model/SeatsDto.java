@@ -2,31 +2,37 @@ package doctor.form.core.model;
 
 import doctor.form.core.model.enums.SeatStatusEnum;
 import doctor.form.core.model.enums.SeatTypeEnum;
+import doctor.form.core.repository.entity.ReservedMovie;
 
+import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 public class SeatsDto {
 
-    private UUID id;
+    private String id;
     private String seatNumber;
-    private SeatStatusEnum status;
-    private SeatTypeEnum type;
+    private SeatStatusEnum seatStatus;
+    private SeatTypeEnum seatType;
+    private List<ReservedMovieDto> reservedMovies;
 
     public SeatsDto() {
     }
 
-    public SeatsDto(UUID id, String seatNumber, SeatStatusEnum status, SeatTypeEnum type) {
+    public SeatsDto(String id, String seatNumber, SeatStatusEnum seatStatus, SeatTypeEnum seatType, List<ReservedMovieDto> reservedMovies) {
         this.id = id;
         this.seatNumber = seatNumber;
-        this.status = status;
-        this.type = type;
+        this.seatStatus = seatStatus;
+        this.seatType = seatType;
+        this.reservedMovies = reservedMovies;
     }
 
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -38,19 +44,27 @@ public class SeatsDto {
         this.seatNumber = seatNumber;
     }
 
-    public SeatStatusEnum getStatus() {
-        return status;
+    public SeatStatusEnum getSeatStatus() {
+        return seatStatus;
     }
 
-    public void setStatus(SeatStatusEnum status) {
-        this.status = status;
+    public void setSeatStatus(SeatStatusEnum seatStatus) {
+        this.seatStatus = seatStatus;
     }
 
-    public SeatTypeEnum getType() {
-        return type;
+    public SeatTypeEnum getSeatType() {
+        return seatType;
     }
 
-    public void setType(SeatTypeEnum type) {
-        this.type = type;
+    public void setSeatType(SeatTypeEnum seatType) {
+        this.seatType = seatType;
+    }
+
+    public List<ReservedMovieDto> getReservedMovies() {
+        return reservedMovies;
+    }
+
+    public void setReservedMovies(List<ReservedMovieDto> reservedMovies) {
+        this.reservedMovies = reservedMovies;
     }
 }

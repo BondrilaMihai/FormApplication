@@ -6,5 +6,5 @@ import java.util.UUID;
 
 public interface UserService {
 
-    UserDto getUserInformation(UUID userId);
+    UserDto getUserInformation(String userId);
 }

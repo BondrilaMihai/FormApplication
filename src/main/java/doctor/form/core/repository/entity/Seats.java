@@ -4,42 +4,50 @@ import doctor.form.core.model.enums.SeatStatusEnum;
 import doctor.form.core.model.enums.SeatTypeEnum;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
-@Table(name = "SEATS")
-public class Seats {
+@Table(name = "SEAT")
+public class Seats implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue
     @Column(name = "ID")
-    private UUID id;
+    private String id;
 
     @Column(name = "SEAT_NUMBER")
     private String seatNumber;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "SEAT_STATUS")
+    @Column(name = "STATUS")
     private SeatStatusEnum seatStatus;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "SEAT_TYPE")
     private SeatTypeEnum seatType;
 
+    @OneToMany(mappedBy="seat")
+    private Set<ReservedMovie> reservedMovies;
+
     public Seats() {
     }
 
-    public Seats(String seatNumber, SeatStatusEnum seatStatus, SeatTypeEnum seatType) {
+    public Seats(String id, String seatNumber, SeatStatusEnum seatStatus, SeatTypeEnum seatType, Set<ReservedMovie> reservedMovies) {
+        this.id = id;
         this.seatNumber = seatNumber;
         this.seatStatus = seatStatus;
         this.seatType = seatType;
+        this.reservedMovies = reservedMovies;
     }
 
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -65,5 +73,13 @@ public class Seats {
 
     public void setSeatType(SeatTypeEnum seatType) {
         this.seatType = seatType;
+    }
+
+    public Set<ReservedMovie> getReservedMovies() {
+        return reservedMovies;
+    }
+
+    public void setReservedMovies(Set<ReservedMovie> reservedMovies) {
+        this.reservedMovies = reservedMovies;
     }
 }

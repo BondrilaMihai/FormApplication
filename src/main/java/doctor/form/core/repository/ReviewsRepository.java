@@ -1,10 +1,10 @@
 package doctor.form.core.repository;
 
-import doctor.form.core.repository.entity.Seats;
+import doctor.form.core.repository.entity.Reviews;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface SeatsRepository extends JpaRepository<Seats, String> {
+public interface ReviewsRepository extends JpaRepository<Reviews, String> {
 }
