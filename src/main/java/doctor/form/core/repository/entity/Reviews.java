@@ -1,8 +1,11 @@
 package doctor.form.core.repository.entity;
 
+import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GenerationTime;
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.UUID;
 
 @Entity
 @Table(name = "REVIEWS")
@@ -10,8 +13,12 @@ public class Reviews implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(
+            name = "UUID",
+            strategy = "org.hibernate.id.UUIDGenerator")
     @Column(name = "ID")
+    @Generated(GenerationTime.ALWAYS)
     private String id;
 
     @Column(name = "MESSAGE")
@@ -20,11 +27,11 @@ public class Reviews implements Serializable {
     @Column(name = "NOTE")
     private Integer note;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="USER_DETAILS_ID", nullable=false)
     private User user;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="MOVIES_ID", nullable=false)
     private Movies movieReview;
 

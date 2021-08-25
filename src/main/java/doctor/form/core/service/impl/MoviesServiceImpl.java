@@ -6,6 +6,8 @@ import doctor.form.core.repository.MoviesRepository;
 import doctor.form.core.repository.entity.Movies;
 import doctor.form.core.service.MoviesService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,10 +24,14 @@ public class MoviesServiceImpl implements MoviesService {
     MoviesMapper moviesMapper;
 
     @Override
-    public List<MoviesDto> getAllMovies() {
-        List<Movies> moviesList = moviesRepository.findAll();
-//        moviesList.stream().map()
-        return null;
+    public List<MoviesDto> getMovies(Pageable pageable, String movieTitle) {
+        if (movieTitle != null && !movieTitle.equals("")) {
+            Page<Movies> movies = moviesRepository.findAllByNameContainingIgnoreCase(movieTitle, pageable);
+            return moviesMapper.toDtos(movies.getContent());
+        } else {
+            Page<Movies> movies = moviesRepository.findAll(pageable);
+            return moviesMapper.toDtos(movies.getContent());
+        }
     }
 
     @Override
@@ -34,7 +40,7 @@ public class MoviesServiceImpl implements MoviesService {
         return moviesList.stream().map(this::movieToDtoWithoutForeignEntity).collect(Collectors.toList());
     }
 
-    MoviesDto movieToDtoWithoutForeignEntity(Movies movie) {
+    private MoviesDto movieToDtoWithoutForeignEntity(Movies movie) {
         MoviesDto moviesDto = new MoviesDto();
 
         moviesDto.setId(movie.getId());

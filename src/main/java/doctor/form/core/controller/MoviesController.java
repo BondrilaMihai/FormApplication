@@ -1,8 +1,12 @@
 package doctor.form.core.controller;
 
+import doctor.form.core.controller.request.MovieRequest;
 import doctor.form.core.model.MoviesDto;
 import doctor.form.core.service.MoviesService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,14 +21,15 @@ public class MoviesController {
     @Autowired
     private MoviesService moviesService;
 
-//    @PostMapping("/get-movies")
-//    public ResponseEntity<List<MoviesDto>> getMovies(@RequestBody MovieRequest movieRequest) {
-//        return new ResponseEntity<>(moviesService.getMovies(movieRequest), HttpStatus.OK);
-//    }
-
-    @GetMapping("/get-all-movies")
-    public ResponseEntity<List<MoviesDto>> getAllMovies() {
-        return new ResponseEntity<>(moviesService.getAllMovies(), HttpStatus.OK);
+    @PostMapping("/get-movies")
+    public ResponseEntity<List<MoviesDto>> getMovies(@RequestBody MovieRequest requestBody) {
+        Pageable pageable;
+        if (requestBody.getSortBy() != null && !requestBody.getSortBy().equals("")) {
+            pageable = PageRequest.of(requestBody.getPage(), requestBody.getPageSize(), Sort.by(requestBody.getSortBy()).descending());
+        } else {
+            pageable = PageRequest.of(requestBody.getPage(), requestBody.getPageSize());
+        }
+        return new ResponseEntity<>(moviesService.getMovies(pageable, requestBody.getMovieTitle()), HttpStatus.OK);
     }
 
     @GetMapping("/get-movies-name")

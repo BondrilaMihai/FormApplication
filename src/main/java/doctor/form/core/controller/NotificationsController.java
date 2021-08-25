@@ -22,10 +22,16 @@ public class NotificationsController {
     @Autowired
     private NotificationsService notificationsService;
 
+    @GetMapping("/get-unopened-notifications")
+    public ResponseEntity<NotificationPaginationModel> getOnlyUnopenedNotifications(@RequestParam Integer page, @RequestParam Integer size) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by("createDate").descending());
+        return new ResponseEntity<>(notificationsService.getUnopenedNotifications(pageable), HttpStatus.OK);
+    }
+
     @GetMapping("/get-notifications")
     public ResponseEntity<NotificationPaginationModel> getNotifications(@RequestParam Integer page, @RequestParam Integer size) {
         Pageable pageable = PageRequest.of(page, size, Sort.by("createDate").descending());
-        return new ResponseEntity<NotificationPaginationModel>(notificationsService.getNotifications(pageable), HttpStatus.OK);
+        return new ResponseEntity<>(notificationsService.getNotifications(pageable), HttpStatus.OK);
     }
 
     @GetMapping("/open-notification/{notificationId}")

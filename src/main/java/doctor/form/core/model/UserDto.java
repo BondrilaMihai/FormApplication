@@ -1,14 +1,6 @@
 package doctor.form.core.model;
 
-import doctor.form.core.repository.entity.Reviews;
-
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import java.util.List;
-import java.util.Set;
-import java.util.UUID;
 
 public class UserDto {
 

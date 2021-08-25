@@ -1,11 +1,8 @@
 package doctor.form.core.repository.entity;
 
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Set;
-import java.util.UUID;
 
 @Entity
 @Table(name = "USER_DETAILS")
@@ -13,8 +10,6 @@ public class User implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-//    @GeneratedValue(generator = "uuid")
-//    @GenericGenerator(name = "uuid", strategy = "uuid2")
     @Column(name = "ID")
     private String id;
 
@@ -36,13 +31,10 @@ public class User implements Serializable {
     @Column(name = "POINTS")
     private Integer points;
 
-    @OneToMany(mappedBy="user")
-    private Set<Reviews> reviews;
-
     public User() {
     }
 
-    public User(String id, String lastName, String firstName, String address, String email, String phoneNumber, Integer points, Set<Reviews> reviews) {
+    public User(String id, String lastName, String firstName, String address, String email, String phoneNumber, Integer points) {
         this.id = id;
         this.lastName = lastName;
         this.firstName = firstName;
@@ -50,7 +42,6 @@ public class User implements Serializable {
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.points = points;
-        this.reviews = reviews;
     }
 
     public String getId() {
@@ -109,11 +100,4 @@ public class User implements Serializable {
         this.points = points;
     }
 
-    public Set<Reviews> getReviews() {
-        return reviews;
-    }
-
-    public void setReviews(Set<Reviews> reviews) {
-        this.reviews = reviews;
-    }
 }

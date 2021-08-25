@@ -5,8 +5,6 @@ import doctor.form.core.model.enums.SeatTypeEnum;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Set;
-import java.util.UUID;
 
 @Entity
 @Table(name = "SEAT")
@@ -29,18 +27,14 @@ public class Seats implements Serializable {
     @Column(name = "SEAT_TYPE")
     private SeatTypeEnum seatType;
 
-    @OneToMany(mappedBy="seat")
-    private Set<ReservedMovie> reservedMovies;
-
     public Seats() {
     }
 
-    public Seats(String id, String seatNumber, SeatStatusEnum seatStatus, SeatTypeEnum seatType, Set<ReservedMovie> reservedMovies) {
+    public Seats(String id, String seatNumber, SeatStatusEnum seatStatus, SeatTypeEnum seatType) {
         this.id = id;
         this.seatNumber = seatNumber;
         this.seatStatus = seatStatus;
         this.seatType = seatType;
-        this.reservedMovies = reservedMovies;
     }
 
     public String getId() {
@@ -75,11 +69,4 @@ public class Seats implements Serializable {
         this.seatType = seatType;
     }
 
-    public Set<ReservedMovie> getReservedMovies() {
-        return reservedMovies;
-    }
-
-    public void setReservedMovies(Set<ReservedMovie> reservedMovies) {
-        this.reservedMovies = reservedMovies;
-    }
 }

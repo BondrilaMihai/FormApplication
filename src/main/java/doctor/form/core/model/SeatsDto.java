@@ -2,12 +2,6 @@ package doctor.form.core.model;
 
 import doctor.form.core.model.enums.SeatStatusEnum;
 import doctor.form.core.model.enums.SeatTypeEnum;
-import doctor.form.core.repository.entity.ReservedMovie;
-
-import javax.persistence.*;
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
 
 public class SeatsDto {
 
@@ -15,17 +9,17 @@ public class SeatsDto {
     private String seatNumber;
     private SeatStatusEnum seatStatus;
     private SeatTypeEnum seatType;
-    private List<ReservedMovieDto> reservedMovies;
+    private ReservedMovieDto reservedMovie;
 
     public SeatsDto() {
     }
 
-    public SeatsDto(String id, String seatNumber, SeatStatusEnum seatStatus, SeatTypeEnum seatType, List<ReservedMovieDto> reservedMovies) {
+    public SeatsDto(String id, String seatNumber, SeatStatusEnum seatStatus, SeatTypeEnum seatType, ReservedMovieDto reservedMovie) {
         this.id = id;
         this.seatNumber = seatNumber;
         this.seatStatus = seatStatus;
         this.seatType = seatType;
-        this.reservedMovies = reservedMovies;
+        this.reservedMovie = reservedMovie;
     }
 
     public String getId() {
@@ -60,11 +54,11 @@ public class SeatsDto {
         this.seatType = seatType;
     }
 
-    public List<ReservedMovieDto> getReservedMovies() {
-        return reservedMovies;
+    public ReservedMovieDto getReservedMovie() {
+        return reservedMovie;
     }
 
-    public void setReservedMovies(List<ReservedMovieDto> reservedMovies) {
-        this.reservedMovies = reservedMovies;
+    public void setReservedMovie(ReservedMovieDto reservedMovie) {
+        this.reservedMovie = reservedMovie;
     }
 }

@@ -1,26 +1,23 @@
 package doctor.form.core.model;
 
 import doctor.form.core.model.enums.SeatStatusEnum;
-import doctor.form.core.repository.entity.Movies;
-import doctor.form.core.repository.entity.Seats;
 
-import java.util.UUID;
 
 public class ReservedMovieDto {
 
     private String id;
     private SeatStatusEnum seatStatus;
-    private SeatsDto seat;
-    private MoviesDto movie;
+    private String movieId;
+    private String seatId;
 
     public ReservedMovieDto() {
     }
 
-    public ReservedMovieDto(String id, SeatStatusEnum seatStatus, SeatsDto seat, MoviesDto movie) {
+    public ReservedMovieDto(String id, SeatStatusEnum seatStatus, String movieId, String seatId) {
         this.id = id;
         this.seatStatus = seatStatus;
-        this.seat = seat;
-        this.movie = movie;
+        this.movieId = movieId;
+        this.seatId = seatId;
     }
 
     public String getId() {
@@ -39,19 +36,19 @@ public class ReservedMovieDto {
         this.seatStatus = seatStatus;
     }
 
-    public SeatsDto getSeat() {
-        return seat;
+    public String getMovieId() {
+        return movieId;
     }
 
-    public void setSeat(SeatsDto seat) {
-        this.seat = seat;
+    public void setMovieId(String movieId) {
+        this.movieId = movieId;
     }
 
-    public MoviesDto getMovie() {
-        return movie;
+    public String getSeatId() {
+        return seatId;
     }
 
-    public void setMovie(MoviesDto movie) {
-        this.movie = movie;
+    public void setSeatId(String seatId) {
+        this.seatId = seatId;
     }
 }

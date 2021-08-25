@@ -19,6 +19,6 @@ public interface NotificationsRepository extends JpaRepository<Notifications, St
     @Query(value = "UPDATE Notifications n SET n.isOpen = 1 WHERE n.id = :id and n.isOpen = false")
     void openNotification(@Param("id") String id);
 
-    Page<Notifications> findAllByCreateDateNotNull(Pageable pageable);
+    Page<Notifications> findAllByIsOpenAndCreateDateNotNull(Boolean isOpen, Pageable pageable);
 
 }

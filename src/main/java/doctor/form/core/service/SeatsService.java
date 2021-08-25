@@ -1,5 +1,6 @@
 package doctor.form.core.service;
 
+import doctor.form.core.controller.request.ReserveSeatRequest;
 import doctor.form.core.model.SeatsDto;
 
 import java.util.List;

@@ -1,5 +1,6 @@
 package doctor.form.core.controller;
 
+import doctor.form.core.controller.request.ReserveSeatRequest;
 import doctor.form.core.model.SeatsDto;
 import doctor.form.core.service.SeatsService;
 import org.springframework.beans.factory.annotation.Autowired;

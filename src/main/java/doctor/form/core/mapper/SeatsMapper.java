@@ -16,5 +16,6 @@ public interface SeatsMapper {
 
     Seats toEntity(SeatsDto seatsDto);
 
+    @Mapping(target = "reservedMovie", ignore = true)
     SeatsDto toDto(Seats seats);
 }

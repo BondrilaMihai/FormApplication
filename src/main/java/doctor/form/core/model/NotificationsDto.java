@@ -1,6 +1,5 @@
 package doctor.form.core.model;
 
-import java.util.UUID;
 
 public class NotificationsDto {
 

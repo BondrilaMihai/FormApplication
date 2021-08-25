@@ -23,8 +23,22 @@ public class NotificationsServiceImpl implements NotificationsService {
 
     @Override
     public NotificationPaginationModel getNotifications(Pageable pageable) {
-        Page<Notifications> notifications = notificationsRepository.findAllByCreateDateNotNull(pageable);
+        Page<Notifications> notifications = notificationsRepository.findAll(pageable);
+        return getNotificationPaginationModel(notifications);
+    }
 
+    @Override
+    public void openNotification(String notificationId) {
+        notificationsRepository.openNotification(notificationId);
+    }
+
+    @Override
+    public NotificationPaginationModel getUnopenedNotifications(Pageable pageable) {
+        Page<Notifications> notifications = notificationsRepository.findAllByIsOpenAndCreateDateNotNull(false, pageable);
+        return getNotificationPaginationModel(notifications);
+    }
+
+    private NotificationPaginationModel getNotificationPaginationModel(Page<Notifications> notifications) {
         NotificationPaginationModel notificationPaginationModel = new NotificationPaginationModel();
         notificationPaginationModel.setTotalElements((int)notifications.getTotalElements());
         notificationPaginationModel.setNotifications(notifications.hasContent()
@@ -32,10 +46,5 @@ public class NotificationsServiceImpl implements NotificationsService {
                 : new ArrayList<>());
 
         return notificationPaginationModel;
-    }
-
-    @Override
-    public void openNotification(String notificationId) {
-        notificationsRepository.openNotification(notificationId);
     }
 }

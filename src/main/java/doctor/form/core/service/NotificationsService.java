@@ -10,4 +10,6 @@ public interface NotificationsService {
     NotificationPaginationModel getNotifications(Pageable pageable);
 
     void openNotification(String notificationId);
+
+    NotificationPaginationModel getUnopenedNotifications(Pageable pageable);
 }

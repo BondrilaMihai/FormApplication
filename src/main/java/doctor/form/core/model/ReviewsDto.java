@@ -1,35 +1,25 @@
 package doctor.form.core.model;
 
-import doctor.form.core.repository.entity.Movies;
-import doctor.form.core.repository.entity.User;
-
-import java.util.UUID;
 
 public class ReviewsDto {
 
-    private String id;
     private String message;
     private Integer note;
-    private UserDto user;
-    private MoviesDto movieReview;
+    private String userId;
+    private String movieId;
+    private String userLastName;
+    private String userFirstName;
 
     public ReviewsDto() {
     }
 
-    public ReviewsDto(String id, String message, Integer note, UserDto user, MoviesDto movieReview) {
-        this.id = id;
+    public ReviewsDto(String message, Integer note, String userId, String movieId, String userLastName, String userFirstName) {
         this.message = message;
         this.note = note;
-        this.user = user;
-        this.movieReview = movieReview;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+        this.userId = userId;
+        this.movieId = movieId;
+        this.userLastName = userLastName;
+        this.userFirstName = userFirstName;
     }
 
     public String getMessage() {
@@ -48,19 +38,35 @@ public class ReviewsDto {
         this.note = note;
     }
 
-    public UserDto getUser() {
-        return user;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setUser(UserDto user) {
-        this.user = user;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
-    public MoviesDto getMovieReview() {
-        return movieReview;
+    public String getMovieId() {
+        return movieId;
     }
 
-    public void setMovieReview(MoviesDto movieReview) {
-        this.movieReview = movieReview;
+    public void setMovieId(String movieId) {
+        this.movieId = movieId;
+    }
+
+    public String getUserLastName() {
+        return userLastName;
+    }
+
+    public void setUserLastName(String userLastName) {
+        this.userLastName = userLastName;
+    }
+
+    public String getUserFirstName() {
+        return userFirstName;
+    }
+
+    public void setUserFirstName(String userFirstName) {
+        this.userFirstName = userFirstName;
     }
 }

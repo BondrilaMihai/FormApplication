@@ -1,8 +1,10 @@
 package doctor.form.core.service.impl;
 
 
+import doctor.form.core.controller.request.ReserveSeatRequest;
 import doctor.form.core.mapper.SeatsMapper;
 import doctor.form.core.model.SeatsDto;
+import doctor.form.core.repository.ReservedMovieRepository;
 import doctor.form.core.repository.SeatsRepository;
 import doctor.form.core.repository.UserRepository;
 import doctor.form.core.service.SeatsService;
@@ -20,9 +22,11 @@ public class SeatsServiceImpl implements SeatsService {
     @Autowired
     SeatsMapper seatsMapper;
 
+    @Autowired
+    ReservedMovieRepository reservedMovieRepository;
+
     @Override
     public List<SeatsDto> getSeats() {
         return seatsMapper.toDtos(seatsRepository.findAll());
-
     }
 }
